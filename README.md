@@ -30,3 +30,16 @@ Edite o arquivo sudoers do sistema e adicione:
 seu-usuário-aqui ALL=(ALL) NOPASSWD: /opt/homebrew/bin/openfortivpn
 seu-usuário-aqui ALL=(ALL) NOPASSWD: /usr/bin/pkill -f openfortivpn
 ```
+## Instruções
+
+Exemplo de arquivo de configurações:
+
+```txt
+host=10.0.0.2
+port=443
+username=seu-username
+password=sua-senha
+trusted-cert=id-do-certificado
+```
+
+> Para obter o *trusted-cert* você pode executar `echo | openssl s_client -connect 10.0.0.2:443 2>/dev/null | openssl x509 -noout -fingerprint -sha256 | tr -d ':'`. Lembre-se de trocar o host e porta conforme necessário.

@@ -31,13 +31,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.action = #selector(showSettings(_:))
         }
         
-        popover.contentSize = NSSize(width: 400, height: 200)
+        popover.contentSize = NSSize(width: 480, height: 430)
         popover.behavior = .transient // Faz o popover fechar automaticamente quando o usuário clica fora dele
         popover.contentViewController = NSHostingController(rootView: ContentView())
 
         updateVpnStatus()
 
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
             self?.updateVpnStatus()
         }
     }

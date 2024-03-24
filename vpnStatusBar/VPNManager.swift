@@ -7,21 +7,33 @@
 
 import Foundation
 
+struct VPNConfiguration: Identifiable, Codable {
+    var id = UUID()
+    var nickname: String
+    var filePath: String
+}
+
 class VPNManager {
     func checkVpnStatus(completion: @escaping (Bool) -> Void) {
-        let pgrepTask = Process()
-        pgrepTask.launchPath = "/usr/bin/pgrep"
-        pgrepTask.arguments = ["openfortivpn"]
-        pgrepTask.launch()
-        pgrepTask.waitUntilExit()
-        
-        defer {
-            pgrepTask.terminate()
+        let process = Process()
+        let pipe = Pipe()
+
+        process.launchPath = "/usr/bin/pgrep"
+        process.arguments = ["openfortivpn"]
+        process.standardOutput = pipe
+        process.standardError = pipe
+
+        process.terminationHandler = { _ in
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            let output = String(data: data, encoding: .utf8) ?? ""
+            
+            // Se houver algum output, isso significa que o pgrep encontrou o processo
+            DispatchQueue.main.async {
+                completion(!output.isEmpty)
+            }
         }
-        
-        let isSuccess = pgrepTask.terminationStatus == 0
-        
-        completion(isSuccess)
+
+        process.launch()
     }
 
     func disconnectVPN() {
@@ -78,11 +90,29 @@ class VPNManager {
 }
 
 extension VPNManager {
-    func saveConfigPath(_ path: String) {
-        UserDefaults.standard.set(path, forKey: "vpnConfigPath")
+    func saveConfigurations(_ configurations: [VPNConfiguration]) {
+        if let encoded = try? JSONEncoder().encode(configurations) {
+            UserDefaults.standard.set(encoded, forKey: "vpnConfigurations")
+        }
     }
 
-    func loadConfigPath() -> String {
-        return UserDefaults.standard.string(forKey: "vpnConfigPath") ?? ""
+    func loadConfigurations() -> [VPNConfiguration] {
+        if let savedData = UserDefaults.standard.data(forKey: "vpnConfigurations"),
+           let savedConfigurations = try? JSONDecoder().decode([VPNConfiguration].self, from: savedData) {
+            return savedConfigurations
+        }
+        return []
+    }
+
+    func saveSelectedConfigurationId(_ id: UUID) {
+        UserDefaults.standard.set(id.uuidString, forKey: "selectedConfigurationId")
+    }
+
+    func loadSelectedConfigurationId() -> UUID? {
+        if let idString = UserDefaults.standard.string(forKey: "selectedConfigurationId"),
+           let id = UUID(uuidString: idString) {
+            return id
+        }
+        return nil
     }
 }

@@ -1,6 +1,6 @@
 # vpnStatusBar
 
-Este é um aplicativo agente gráfico do OpenFortiClient, construído utilizando Swift. Sua funcionalidade é basicamente prover um mecanismo simples para conectar e desconectar da VPN, além de acompanhar o status da conexão de forma visual.
+Este é um aplicativo agente gráfico do OpenFortiVPN, construído utilizando Swift. Sua funcionalidade é basicamente prover um mecanismo simples para conectar e desconectar da VPN, além de acompanhar o status da conexão de forma visual.
 
 Indicador de VPN desconectada:
 

@@ -117,6 +117,15 @@ struct ContentView: View {
             vpnManager.checkVpnStatus { isConnected in
                 isVpnConnected = isConnected
             }
+            
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("VpnStatusChanged"), object: nil, queue: .main) { notification in
+                    if let isConnected = notification.userInfo?["isConnected"] as? Bool {
+                        isVpnConnected = isConnected
+                    }
+                }
+        }
+        .onDisappear {
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name("VpnStatusChanged"), object: nil)
         }
         .onChange(of: selectedConfigurationId) { newValue in
             if let newValue = newValue {

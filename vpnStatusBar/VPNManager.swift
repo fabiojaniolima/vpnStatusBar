@@ -1,10 +1,3 @@
-//
-//  VPNManager.swift
-//  vpnStatusBar
-//
-//  Created by Fabio J L Ferreira on 23/03/24.
-//
-
 import Foundation
 
 struct VPNConfiguration: Identifiable, Codable {

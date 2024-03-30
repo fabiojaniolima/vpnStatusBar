@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E508BB492BB662F4007F55C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508BB482BB662F4007F55C2 /* AppDelegate.swift */; };
 		E51310952BAFB6C200BCBD31 /* vpnStatusBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51310942BAFB6C200BCBD31 /* vpnStatusBarApp.swift */; };
 		E51310972BAFB6C200BCBD31 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51310962BAFB6C200BCBD31 /* ContentView.swift */; };
 		E51310992BAFB6C200BCBD31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E51310982BAFB6C200BCBD31 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E508BB482BB662F4007F55C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E51310912BAFB6C100BCBD31 /* vpnStatusBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vpnStatusBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51310942BAFB6C200BCBD31 /* vpnStatusBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vpnStatusBarApp.swift; sourceTree = "<group>"; };
 		E51310962BAFB6C200BCBD31 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				E513109D2BAFB6C200BCBD31 /* vpnStatusBar.entitlements */,
 				E513109A2BAFB6C200BCBD31 /* Preview Content */,
 				E51310A32BAFB79100BCBD31 /* VPNManager.swift */,
+				E508BB482BB662F4007F55C2 /* AppDelegate.swift */,
 			);
 			path = vpnStatusBar;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E508BB492BB662F4007F55C2 /* AppDelegate.swift in Sources */,
 				E51310972BAFB6C200BCBD31 /* ContentView.swift in Sources */,
 				E51310A42BAFB79100BCBD31 /* VPNManager.swift in Sources */,
 				E51310952BAFB6C200BCBD31 /* vpnStatusBarApp.swift in Sources */,
